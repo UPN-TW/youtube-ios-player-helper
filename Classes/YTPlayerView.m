@@ -748,7 +748,9 @@ NSString static *const kYTPlayerSyndicationRegexPattern = @"^https://tpc.googles
   [self.webView setDelegate:self];
   self.webView.allowsInlineMediaPlayback = YES;
   self.webView.mediaPlaybackRequiresUserAction = NO;
-  
+  if (@available(iOS 9, *)) {
+    self.webView.allowsPictureInPictureMediaPlayback = NO;
+  }
   if ([self.delegate respondsToSelector:@selector(playerViewPreferredInitialLoadingView:)]) {
     UIView *initialLoadingView = [self.delegate playerViewPreferredInitialLoadingView:self];
     if (initialLoadingView) {
